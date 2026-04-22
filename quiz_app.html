@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz App</title>
-    <style>
-        body { font-family: Arial; text-align: center; padding: 20px; }
-        button { margin: 5px; padding: 10px; display: block; margin-left:auto; margin-right:auto; }
-    </style>
+<title>Quiz App</title>
+ <style>
+body { font-family: Arial; text-align: center; padding: 20px; }
+button { margin: 5px; padding: 10px; display: block; margin-left:auto; margin-right:auto; }
+ </style>
 </head>
 <body>
-
-<h2>Simple MCQ Quiz</h2>
+<h2>Simple MCQ Quiz Check Your IQ</h2>
 
 <div id="quiz"></div>
 <h3 id="feedback"></h3>
@@ -82,17 +81,19 @@ function showResult(){
     let message = "";
 
     if(score === 0){
-        message = "You need to improve";
+        message = " you bot you have zero iq";
     } 
     else if(score <= 7){
-        message = "Keep practicing";
+        message = "you are noob ";
     } 
     else if(score > 10){
-        message = "Great job, you're really smart!";
+        message = "lil nigga you smart";
     } 
-    else {
-        message = "Good effort!";
+    else if(score> 15){
+        message = "dont use google bruh";
     }
+    else
+        message="go home nigga";
 
     alert(message);
 
