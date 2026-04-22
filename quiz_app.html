@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 20px; }
+        button { margin: 5px; padding: 10px; display: block; margin-left:auto; margin-right:auto; }
+    </style>
+</head>
+<body>
+
+<h2>Simple MCQ Quiz</h2>
+
+<div id="quiz"></div>
+<h3 id="feedback"></h3>
+<h3 id="result"></h3>
+
+<script>
+const quiz = [
+{q:"In cryptography, what problem secures RSA?", options:["Sorting Problem","Integer Factorization","Graph Coloring","Hash Collision"], answer:"Integer Factorization"},
+{q:"1925 Nazi bodyguard unit led by Hitler?", options:["Gestapo","Wehrmacht","Schutzstaffel","Luftwaffe"], answer:"Schutzstaffel"},
+{q:"Composer, Wagner’s father-in-law, New German School?", options:["Beethoven","Mozart","Franz Liszt","Bach"], answer:"Franz Liszt"},
+{q:"Point of infinite density in black hole?", options:["Event Horizon","Nebula","Singularity","Quasar"], answer:"Singularity"},
+{q:"Compiler phase grouping characters?", options:["Parsing","Lexical Analysis","Execution","Linking"], answer:"Lexical Analysis"},
+{q:"Battle of Kadesh recorded on?", options:["Paper","Stone Tablets","Digital Records","Wood"], answer:"Stone Tablets"},
+{q:"1943 conference for unconditional surrender?", options:["Yalta","Potsdam","Casablanca Conference","Tehran"], answer:"Casablanca Conference"},
+{q:"Werewolf syndrome disorder?", options:["Albinism","Hypertrichosis","Hemophilia","Vitiligo"], answer:"Hypertrichosis"},
+{q:"Impossibility theorem in distributed systems?", options:["P vs NP","CAP Theorem","Moore’s Law","Turing Test"], answer:"CAP Theorem"},
+{q:"Anti-art movement by Tristan Tzara?", options:["Cubism","Surrealism","Dadaism","Realism"], answer:"Dadaism"},
+{q:"Operation to rescue Mussolini?", options:["Operation Barbarossa","Operation Eiche","Operation Overlord","Operation Torch"], answer:"Operation Eiche"},
+{q:"Pauli principle name?", options:["Uncertainty Principle","Pauli Exclusion Principle","Relativity","Quantum Law"], answer:"Pauli Exclusion Principle"},
+{q:"Phonetic sound like quick ‘t’?", options:["Plosive","Fricative","Flap","Nasal"], answer:"Flap"},
+{q:"Database delete anomaly?", options:["Insertion Error","Update Bug","Deletion Anomaly","Syntax Error"], answer:"Deletion Anomaly"},
+{q:"Gamburtsev Mountains under which continent?", options:["Asia","Europe","Antarctica","Africa"], answer:"Antarctica"},
+
+{q:"Which planet is known as the Red Planet?", options:["Earth","Mars","Venus","Jupiter"], answer:"Mars"},
+{q:"What force keeps planets in orbit?", options:["Magnetism","Electricity","Gravity","Friction"], answer:"Gravity"},
+{q:"Earth's natural satellite?", options:["Mars","Moon","Sun","Star"], answer:"Moon"},
+{q:"Largest planet?", options:["Earth","Saturn","Jupiter","Neptune"], answer:"Jupiter"},
+{q:"What do rockets use to move?", options:["Wind","Fuel","Thrust","Water"], answer:"Thrust"},
+{q:"First human on Moon?", options:["Yuri Gagarin","Neil Armstrong","Buzz Aldrin","Einstein"], answer:"Neil Armstrong"},
+{q:"Gas in space suits?", options:["Hydrogen","Oxygen","Nitrogen","Helium"], answer:"Oxygen"},
+{q:"Our galaxy?", options:["Andromeda","Milky Way","Black Hole","Orion"], answer:"Milky Way"}
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+    if(index >= quiz.length){
+        showResult();
+        return;
+    }
+
+    document.getElementById("feedback").innerText = "";
+
+    let q = quiz[index];
+    let html = `<p>${q.q}</p>`;
+
+    q.options.forEach(option => {
+        html += `<button onclick="checkAnswer('${option}')">${option}</button>`;
+    });
+
+    document.getElementById("quiz").innerHTML = html;
+}
+
+function checkAnswer(selected){
+    let correct = quiz[index].answer;
+
+    if(selected === correct){
+        score++;
+        document.getElementById("feedback").innerText = "Correct!";
+    } else {
+        document.getElementById("feedback").innerText = "Wrong! Correct answer: " + correct;
+    }
+
+    index++;
+    setTimeout(loadQuestion, 1000);
+}
+
+function showResult(){
+    let message = "";
+
+    if(score === 0){
+        message = "You need to improve";
+    } 
+    else if(score <= 7){
+        message = "Keep practicing";
+    } 
+    else if(score > 10){
+        message = "Great job, you're really smart!";
+    } 
+    else {
+        message = "Good effort!";
+    }
+
+    alert(message);
+
+    document.getElementById("quiz").innerHTML = "";
+    document.getElementById("feedback").innerText = "";
+    document.getElementById("result").innerText = 
+        "Your Score: " + score + "/" + quiz.length;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
